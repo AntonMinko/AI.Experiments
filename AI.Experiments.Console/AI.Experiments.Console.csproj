@@ -9,11 +9,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AI.Experiments.Logic\AI.Experiments.Logic.csproj" />
-      <ProjectReference Include="..\AI.Experiments.OpenAI\AI.Experiments.OpenAI.csproj" />
+      <ProjectReference Include="..\AI.Experiments.OpenAIProvider\AI.Experiments.OpenAIProvider.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.10" />
     </ItemGroup>
 
     <ItemGroup>
