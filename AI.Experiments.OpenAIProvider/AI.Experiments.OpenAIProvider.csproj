@@ -4,11 +4,11 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>AI.Experiments.OpenAI</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="OpenAI" Version="2.5.0" />
+      <PackageReference Include="OpenAI" Version="2.6.0" />
+      <PackageReference Include="Tiktoken" Version="2.2.0" />
     </ItemGroup>
 
 </Project>

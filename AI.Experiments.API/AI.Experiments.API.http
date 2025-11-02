@@ -1,4 +1,7 @@
-GET {{base_url}}/weatherforecast/
+< {%
+    request.variables.set("base_url", "http://localhost:5171")
+%}
+GET http://localhost:5171/api/OpenAIChat/chat?model=gpt-4o&temperature=0.7&message=Hello
 Accept: application/json
 
 ###

@@ -17,4 +17,14 @@ public class OpenAiExperiments(OpenAiSettings settings)
         var models = await _client.GetAvailableChatModels();
         WriteLine($"Available Chat Models: {string.Join(Environment.NewLine, models)}");
     }
+
+    public async Task StreamMessages()
+    {
+        var question = "Suggest ten unusual ice cream flavors.";
+        var chatClient = _client.GetChatClient();
+        await foreach (var chunk in chatClient.StreamChatMessage(question))
+        {
+            Write(chunk);
+        }
+    }
 }

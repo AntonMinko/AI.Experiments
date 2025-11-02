@@ -8,10 +8,12 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0"/>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\AI.Experiments.Logic\AI.Experiments.Logic.csproj" />
+      <ProjectReference Include="..\AI.Experiments.OpenAIProvider\AI.Experiments.OpenAIProvider.csproj" />
     </ItemGroup>
 
 </Project>

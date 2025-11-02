@@ -24,4 +24,6 @@ host.Services.GetRequiredService<IConfiguration>().GetSection("OpenAI").Bind(ope
 WriteLine($"Environment: {environment}");
 
 var openAi = new OpenAiExperiments(openAiSettings);
-await openAi.GetAvailableModels();
+//await openAi.GetAvailableModels();
+await openAi.StreamMessages();
+await openAi.FirstChat();
