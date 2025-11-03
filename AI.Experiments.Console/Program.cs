@@ -34,4 +34,5 @@ var openAi = new OpenAiExperiments(openAiSettings);
 // await openAi.TestTemperatureAndTopPWithOneSentenceExplanation_gpt5();
 // await openAi.TestTemperatureAndTopPWithOneSentenceExplanation_gpt5mini();
 // await openAi.TestTemperatureAndTopPWithOneSentenceExplanation_gpt5nano();
+// await openAi.StreamMessagesViaApi();
 

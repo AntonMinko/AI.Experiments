@@ -4,7 +4,8 @@ namespace AI.Experiments.Console;
 
 public class OpenAiExperiments(OpenAiSettings settings)
 {
-    private readonly OpenAiClient _client = new OpenAiClient(settings.Key);
+    private readonly OpenAiClient _client = new(settings.Key);
+    private readonly HttpClient _httpClient = new();
     
     public async Task FirstChat()
     {
@@ -27,6 +28,45 @@ public class OpenAiExperiments(OpenAiSettings settings)
             Write(chunk);
         }
         WriteLine();
+    }
+
+    public async Task StreamMessagesViaApi(string baseUrl = "http://localhost:5171")
+    {
+     const int bufferSize = 16;
+        var model = "gpt-4o";
+        var temperature = 0.7f;
+        var topP = 0.9f;
+        var message = "Suggest ten unusual ice cream flavors.";
+
+        var url = $"{baseUrl}/api/OpenAIChat/chat/stream?model={Uri.EscapeDataString(model)}&temperature={temperature}&topP={topP}&message={Uri.EscapeDataString(message)}";
+
+        WriteLine($"Connecting to: {url}");
+        WriteLine($"Streaming response:");
+        WriteLine("---");
+
+        try
+        {
+            using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+            response.EnsureSuccessStatusCode();
+
+            using var stream = await response.Content.ReadAsStreamAsync();
+            using var reader = new StreamReader(stream);
+
+            var buffer = new char[bufferSize];
+            int read;
+            while ((read = await reader.ReadBlockAsync(buffer)) > 0)
+            {
+                Write(buffer[..read]);
+            }
+
+            WriteLine();
+            WriteLine("---");
+            WriteLine("Stream completed.");
+        }
+        catch (Exception ex)
+        {
+            WriteLine($"Error: {ex.Message}");
+        }
     }
 
     /*
