@@ -25,5 +25,13 @@ WriteLine($"Environment: {environment}");
 
 var openAi = new OpenAiExperiments(openAiSettings);
 //await openAi.GetAvailableModels();
-await openAi.StreamMessages();
-await openAi.FirstChat();
+//await openAi.StreamMessages();
+//await openAi.FirstChat();
+// await openAi.TestTemperatureAndTopPWithExactQuestion();
+// await openAi.TestTemperatureAndTopPWithOpinionatedQuestion();
+// await openAi.TestTemperatureAndTopPWithOneSentenceExplanation_gpt4o();
+// await openAi.TestTemperatureAndTopPWithOneSentenceExplanation_gpt41();
+// await openAi.TestTemperatureAndTopPWithOneSentenceExplanation_gpt5();
+// await openAi.TestTemperatureAndTopPWithOneSentenceExplanation_gpt5mini();
+// await openAi.TestTemperatureAndTopPWithOneSentenceExplanation_gpt5nano();
+

@@ -17,7 +17,7 @@ public class OpenAIChatController : ControllerBase
     [HttpGet("chat")]
     public async Task<IActionResult> GetChat(
         [FromQuery] string model,
-        [FromQuery] double temperature,
+        [FromQuery] float temperature,
         [FromQuery] string message)
     {
         if (string.IsNullOrWhiteSpace(model))

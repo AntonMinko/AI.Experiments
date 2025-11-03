@@ -14,19 +14,22 @@ public class OpenAiClient(string apiKey)
     {
         // var result = await _client.GetOpenAIModelClient().GetModelsAsync();
         // return result.Value.Select(model => model.Id).ToList();
-        return ["gpt-5-nano", "gpt-5-mini", "gpt-5", "gpt-4.1", "pt-4o"];
+        return ["gpt-5-nano", "gpt-5-mini", "gpt-5", "gpt-4.1", "gpt-4o"];
     }
 
     public OpenAiChatClient GetChatClient(string model = "gpt-4o") => new(model, _client.GetChatClient(model));
 }
 public class OpenAiChatClient(string model, ChatClient client)
 {
-    public async Task<string> SendChatMessage(string message, double temperature = 0.5)
+    public async Task<string> SendChatMessage(string message, float temperature = 1.0f, float topP = 1.0f)
     {
-        var options = new ChatCompletionOptions
+        var options = new ChatCompletionOptions();
+        if (model.StartsWith("gpt-4"))
         {
-            Temperature = (float)temperature
-        };
+            options.Temperature = temperature;
+            options.TopP = topP;
+        }
+        
         var chatMessage = new UserChatMessage(message);
         var completion = await client.CompleteChatAsync([chatMessage], options);
         
@@ -48,12 +51,12 @@ public class OpenAiChatClient(string model, ChatClient client)
         return completion.Value.Content[0].Text;
     }
 
-    public async IAsyncEnumerable<string> StreamChatMessage(string message, float temperature = 0.5f)
+    public async IAsyncEnumerable<string> StreamChatMessage(string message, float temperature = 0.5f, float topP = 0.9f)
     {
         var options = new ChatCompletionOptions
         {
             Temperature = temperature,
-            IncludeLogProbabilities = true
+            TopP = topP
         };
 
         var encoder = ModelToEncoder.For(model);
