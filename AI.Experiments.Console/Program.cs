@@ -23,7 +23,7 @@ host.Services.GetRequiredService<IConfiguration>().GetSection("OpenAI").Bind(ope
 
 WriteLine($"Environment: {environment}");
 
-var openAi = new OpenAiExperiments(openAiSettings);
+//var openAi = new OpenAiExperiments(openAiSettings);
 //await openAi.GetAvailableModels();
 //await openAi.StreamMessages();
 //await openAi.FirstChat();
@@ -36,3 +36,9 @@ var openAi = new OpenAiExperiments(openAiSettings);
 // await openAi.TestTemperatureAndTopPWithOneSentenceExplanation_gpt5nano();
 // await openAi.StreamMessagesViaApi();
 
+var anthropicSettings = new AnthropicSettings();
+host.Services.GetRequiredService<IConfiguration>().GetSection("Anthropic").Bind(anthropicSettings);
+
+var anthropic = new AnthropicExperiments(anthropicSettings);
+// await anthropic.GetModels();
+await anthropic.FirstChat();

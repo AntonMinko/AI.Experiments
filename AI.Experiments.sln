@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.Experiments.Console", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.Experiments.OpenAIProvider", "AI.Experiments.OpenAIProvider\AI.Experiments.OpenAIProvider.csproj", "{ADF64355-F9C8-4AD5-82B5-9133734BA69F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.Experiments.AnthropicProvider", "AI.Experiments.AnthropicProvider\AI.Experiments.AnthropicProvider.csproj", "{8330E7B6-8A11-4D68-BC3C-70CA5CFEDC33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.Experiments.Perplexity", "AI.Experiments.Perplexity\AI.Experiments.Perplexity.csproj", "{E4DCAE51-9B1B-417E-8CEE-7483114A1A68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{ADF64355-F9C8-4AD5-82B5-9133734BA69F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADF64355-F9C8-4AD5-82B5-9133734BA69F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADF64355-F9C8-4AD5-82B5-9133734BA69F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8330E7B6-8A11-4D68-BC3C-70CA5CFEDC33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8330E7B6-8A11-4D68-BC3C-70CA5CFEDC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8330E7B6-8A11-4D68-BC3C-70CA5CFEDC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8330E7B6-8A11-4D68-BC3C-70CA5CFEDC33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DCAE51-9B1B-417E-8CEE-7483114A1A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DCAE51-9B1B-417E-8CEE-7483114A1A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DCAE51-9B1B-417E-8CEE-7483114A1A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DCAE51-9B1B-417E-8CEE-7483114A1A68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
