@@ -9,3 +9,8 @@ public class AnthropicSettings
 {
     public string Key { get; set; }
 }
+
+public class PerplexitySettings
+{
+    public string Key { get; set; }
+}

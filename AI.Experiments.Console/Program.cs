@@ -41,4 +41,13 @@ host.Services.GetRequiredService<IConfiguration>().GetSection("Anthropic").Bind(
 
 var anthropic = new AnthropicExperiments(anthropicSettings);
 // await anthropic.GetModels();
-await anthropic.FirstChat();
+//await anthropic.FirstChat();
+
+
+var perplexitySettings = new PerplexitySettings();
+host.Services.GetRequiredService<IConfiguration>().GetSection("Perplexity").Bind(perplexitySettings);
+var perplexity = new PerplexityExperiments(perplexitySettings);
+//await perplexity.GetAvailableModels();
+//await perplexity.FirstChat();
+await perplexity.StreamMessages();
+
