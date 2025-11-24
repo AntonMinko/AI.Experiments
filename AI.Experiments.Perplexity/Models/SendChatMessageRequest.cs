@@ -7,7 +7,9 @@ namespace AI.Experiments.Perplexity.Models;
 public record SendChatMessageRequest(
     [property: JsonPropertyName("model")] string Model,
     [property: JsonPropertyName("messages")] IEnumerable<Message> Messages,
-    [property: JsonPropertyName("stream")] bool Stream
+    [property: JsonPropertyName("stream")] bool Stream,
+    [property: JsonPropertyName("temperature")] float Temperature,
+    [property: JsonPropertyName("top_p")] float TopP
 )
 {
     public StringContent ToJson()

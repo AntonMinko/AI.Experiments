@@ -49,5 +49,6 @@ host.Services.GetRequiredService<IConfiguration>().GetSection("Perplexity").Bind
 var perplexity = new PerplexityExperiments(perplexitySettings);
 //await perplexity.GetAvailableModels();
 //await perplexity.FirstChat();
-await perplexity.StreamMessages();
+//await perplexity.StreamMessages();
+await perplexity.TestTemperatureAndTopPWithOneSentenceExplanation_Pro();
 

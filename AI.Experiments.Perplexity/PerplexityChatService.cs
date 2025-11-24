@@ -5,14 +5,36 @@ namespace AI.Experiments.Perplexity;
 
 public class PerplexityChatService(string model, string apiKey)
 {
+    private const float DefaultTemperature = 0.2f;
+    private const float DefaultTopP = 0.9f;
+    
+    public static readonly HashSet<string> SupportedModels =
+        ["sonar", "sonar-pro", "sonar-deep-research", "sonar-reasoning", "sonar-reasoning-pro"];
     private readonly PerplexityChatClient _client = new(model, apiKey);
     
+    private float _temperature = DefaultTemperature;
+    private float _topP = DefaultTopP;
+
+    public float Temperature
+    {
+        get => _temperature;
+        set => _temperature = 0.0 <= value && value < 2.0f ? value : _temperature;
+    }
+
+    public float TopP
+    {
+        get => _topP;
+        set => _topP = 0.0 <= value && value <= 1.0f ? value : _topP;
+    }
+
     public async Task<string> Send(string message)
     {
         var request = new SendChatMessageRequest(
             Model: model,
             Messages: [new Message(PerplexityChatClient.DefaultRole, message)],
-            Stream: false
+            Stream: false,
+            Temperature: _temperature,
+            TopP: TopP
         );
 
         var response = await _client.SendChatMessage(request);
@@ -28,7 +50,9 @@ public class PerplexityChatService(string model, string apiKey)
         var request = new SendChatMessageRequest(
             Model: model,
             Messages: [new Message(PerplexityChatClient.DefaultRole, message)],
-            Stream: true
+            Stream: true,
+            Temperature: _temperature,
+            TopP: TopP
         );
 
         await foreach (var chunk in _client.StreamChatMessage(request))
