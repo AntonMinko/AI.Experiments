@@ -44,6 +44,7 @@ public class PerplexityChatClient(string model, string apiKey, string baseUrl = 
         await using var stream = await response.Content.ReadAsStreamAsync();
         using var reader = new StreamReader(stream);
 
+        SendChatMessageResponse? chunk = null;
         while (!reader.EndOfStream)
         {
             var chunkString = await reader.ReadLineAsync();
@@ -51,8 +52,14 @@ public class PerplexityChatClient(string model, string apiKey, string baseUrl = 
             
             // json payload is prefixed with "data: " - cut it off before parsing
             chunkString = chunkString.Substring("data: ".Length);
-            var chunk = JsonSerializer.Deserialize<SendChatMessageResponse>(chunkString);
+            chunk = JsonSerializer.Deserialize<SendChatMessageResponse>(chunkString);
             yield return chunk!.Choices.First().Delta.Content;
+        }
+
+        if (chunk != null)
+        {
+            var usage = chunk.Usage;
+            Console.WriteLine($"\n\n-- Tokens used. Input: {usage.PromptTokens}, Output: {usage.CompletionTokens}, Total: {usage.TotalTokens}");
         }
     }
 }
